@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Laptop Price Prediction</title>
+</head>
+<body>
+    <h1>Laptop Price Prediction</h1>
+    {% if predicted_price %}
+        <p><strong>Predicted Price:</strong> {{ predicted_price }}</p>
+    {% endif %}
+    <form action="/predict" method="post">
+        {% for feature, options in dropdown_options.items() %}
+        <label for="{{ feature }}">{{ feature }}:</label>
+        <select name="{{ feature }}" id="{{ feature }}">
+            {% for option in options %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        {% endfor %}
+        
+        {% for feature, options in numeric_dropdown_options.items() %}
+        <label for="{{ feature }}">{{ feature }}:</label>
+        <select name="{{ feature }}" id="{{ feature }}">
+            {% for option in options %}
+            <option value="{{ option }}">{{ option }}</option>
+            {% endfor %}
+        </select>
+        <br><br>
+        {% endfor %}
+
+        <button type="submit">Predict Price</button>
+    </form>
+</body>
+</html>
